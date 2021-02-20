@@ -1,35 +1,41 @@
 #include "holberton.h"
-
 /**
- * cap_string - Write a function that capitalizes all words of a string.
- *
- * @entry: This is the input string
- *
- * Return: String capitalized
- */
-char *cap_string(char *entry)
+  * cap_string - capitalizes all words of a string
+  * @s: string to convert
+  * Return: s capitalizes
+  */
+char *cap_string(char *s)
 {
-	int conversion, index, count;
+	int j;
 
-	char chars[] = {' ', ',', ';', '.', '!',
-			 '?', '"', '(', ')', '{', '}',  '\t', '\n', '\0'};
-	conversion = 32;
-
-	for (index = 0; entry[index] != '\0'; index++)
+	for (j = 0; s[j] != '\0'; j++)
 	{
-		if (entry[index] >= 'index' && entry[index] <= 'z')
+		if (j == 0)
 		{
-			entry[index] =  entry[index] - conversion;
-		}
-		conversion = 0;
-		for (count = 0; chars[count] != '\0'; count++)
-		{
-			if (chars[count] == entry[index])
+			if (s[j] >= 'a' && s[j] <= 'z')
 			{
-				conversion = 32;
-				break;
+				s[j] = s[j] - 32;
 			}
 		}
+		else
+		{
+			if (s[j] == ' ' || s[j] == '\t'
+					|| s[j] == '\n'
+					|| s[j] == ','
+					|| s[j] == ';'
+					|| s[j] == '.'
+					|| s[j] == '!'
+					|| s[j] == '?'
+					|| s[j] == '('
+					|| s[j] == ')'
+					|| s[j] == '{'
+					|| s[j] == '}')
+			{
+				if (s[j + 1] >= 'a' && s[j + 1] <= 'z')
+					s[j + 1] = s[j + 1] - 32;
+			}
+		}
+
 	}
-	return (entry);
+	return (s);
 }
