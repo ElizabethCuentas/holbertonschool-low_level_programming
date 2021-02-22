@@ -1,29 +1,27 @@
-#include <stdio.h>
-
+#include "holberton.h"
 /**
- * _strstr - Write a function that locates a substring.
- *
- * @haystack: This is the input string
- * @needle: This is a find to locate in the string
- *
- * Return: a pointer to the beginning of the located substring, or NULL if the
- * substring is not found.
- */
-
+  * _strstr - locates a substring.
+  * @haystack: C string to be scanned.
+  * @needle: C string containing the sequence of characters to match.
+  * Return: ()
+  */
 char *_strstr(char *haystack, char *needle)
 {
-	char *temp;
+	int i;
+	int j;
 
-	while (*haystack)
+	if (*needle == '\0')
+		return (haystack);
+	if (*needle == 0)
+		return (haystack);
+
+	for (i = 0; haystack[i] != '\0'; i++)
 	{
-		temp = haystack;
-		while (*needle == *haystack)
-		{
-			haystack++, needle++;
-		}
-		if (*needle == '\0')
-			return (temp);
-		haystack++;
+		j = 0;
+		while (haystack[i + j] == needle[j])
+			j++;
+		if (needle[j] == '\0')
+			return (&haystack[i]);
 	}
-	return (0);
+	return ('\0');
 }
